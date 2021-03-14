@@ -820,7 +820,7 @@ andre_bot.on("message-new", async (mek) => {
       case "nulis":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(`Teksnya mana ngab? Contoh : ${prefix}nulis halo pack`);
         nul = body.slice(7);
         reply("「❗」WAIT BRO GUE NULIS DUMLU YAKAN");
@@ -837,7 +837,7 @@ andre_bot.on("message-new", async (mek) => {
       case "tuliskiri":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(
             `Teksnya mana ngab? Contoh : ${prefix}nulis1 Zakaria baik hati`
           );
@@ -855,7 +855,7 @@ andre_bot.on("message-new", async (mek) => {
       case "tuliskanan":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(
             `Teksnya mana ngab? Contoh : ${prefix}nulis2 andre_bot Bot`
           );
@@ -881,41 +881,14 @@ andre_bot.on("message-new", async (mek) => {
         andre_bot.sendMessage(from, randQuote, text, { quoted: mek });
 
         break;
-      case "ninjalogo":
-        if (isBanned) return reply(nad.baned());
-
-        var gh = body.slice(11);
-        var nin = gh.split("&")[0];
-        var ja = gh.split("&")[1];
-        if (args.length < 1)
-          return reply(`「❗」Contoh : ${prefix}ninjalogo andre_bot & Bot`);
-        reply(nad.wait());
-        buffer = await getBuffer(
-          `https://api.xteam.xyz/textpro/ninjalogo?text=${nin}&text2=${ja}&APIKEY=${XteamKey}`
-        );
-        andre_bot.sendMessage(from, buffer, image, { quoted: mek });
-        break;
-      case "halloweentext":
-        if (isBanned) return reply(nad.baned());
-
-        if (args.length < 1) return reply(nad.wrongf());
-        ween = body.slice(15);
-        if (ween.length > 10)
-          return reply("Teksnya kepanjangan, maksimal 9 karakter");
-        reply(nad.wait());
-        buffer = await getBuffer(
-          `https://api.xteam.xyz/textpro/helloweenfire?text=${ween}&APIKEY=${XteamKey}`
-        );
-        andre_bot.sendMessage(from, buffer, image, { quoted: mek });
-        break;
       case "pornhub":
         if (isBanned) return reply(nad.baned());
 
         var gh = body.slice(11);
         var porn = gh.split("&")[0];
         var hub = gh.split("&")[1];
-        if (args.length < 1)
-          return reply(`「❗」Contoh : ${prefix}pornhub andre_bot & Hub`);
+        if (args.length < 2)
+          return reply(`「❗」Contoh : ${prefix}pornhub ANDRE & Hub`);
         reply(nad.wait());
         alan = await getBuffer(
           `https://api.zeks.xyz/api/phlogo?text1=${porn}&text2=${hub}&apikey=apivinz`
@@ -923,28 +896,33 @@ andre_bot.on("message-new", async (mek) => {
         andre_bot.sendMessage(from, alan, image, { quoted: mek });
 
         break;
-      case "textlight":
+      case "logogaming":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1) return reply(nad.wrongf());
-        ligh = body.slice(11);
-        if (ligh.length > 10)
-          return reply("Teksnya kepanjangan, maksimal 9 karakter");
+        var gh = body.slice(14);
+        var porn = gh.split("&")[0];
+        var hub = gh.split("&")[1];
+        if (args.length < 2)
+          return reply(
+            `「❗」Contoh : ${prefix}logogaming Andre & G-A-M-I-N-G`
+          );
         reply(nad.wait());
-        lawak = await getBuffer(
-          `https://api.zeks.xyz/api/tlight?text=${ligh}&apikey=apivinz`
+        alan = await getBuffer(
+          `https://api.zeks.xyz/api/wolflogo?apikey=apivinz&text1=${porn}&text2=${hub}`
         );
-        andre_bot.sendMessage(from, lawak, image, { quoted: mek });
+        andre_bot.sendMessage(from, alan, image, { quoted: mek });
 
         break;
-      case "glitchtext":
+      case "logotiktok":
         if (isBanned) return reply(nad.baned());
 
-        var gh = body.slice(12);
+        var gh = body.slice(14);
         var gli = gh.split("&")[0];
         var tch = gh.split("&")[1];
-        if (args.length < 1)
-          return reply(`「❗」Contoh : ${prefix}glitchtext andre_bot & Gans`);
+        if (args.length < 2)
+          return reply(
+            `「❗」Contoh : ${prefix}logotiktok Andre Bot & WhatsApp Bot Masa Kini :v`
+          );
         reply(nad.wait());
         buffer = await getBuffer(
           `https://api.zeks.xyz/api/gtext?text1=${gli}&text2=${tch}&apikey=apivinz`
@@ -955,7 +933,7 @@ andre_bot.on("message-new", async (mek) => {
       case "simi":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(`Mau nanya apa? Contoh : ${prefix}simi halo`);
         tefs = body.slice(7);
         anu = await fetchJson(
@@ -967,7 +945,7 @@ andre_bot.on("message-new", async (mek) => {
       case "tts":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return andre_bot.sendMessage(
             from,
             `Kode bahasanya mana ngab? contoh : ${prefix}tts id Halo andre_bot`,
@@ -1066,7 +1044,7 @@ andre_bot.on("message-new", async (mek) => {
         var quote = gh.split("&")[0];
         var wm = gh.split("&")[1];
         const pref = `yang mau dijadiin quote apaan, titit?\n\ncontoh : ${prefix}bikinquote aku bukan boneka & Kata andre_bot`;
-        if (args.length < 1) return reply(pref);
+        if (args.length < 2) return reply(pref);
         reply(nad.wait());
         anu = await fetchJson(
           `https://terhambar.com/aw/qts/?kata=${quote}&author=${wm}&tipe=random`,
@@ -1404,7 +1382,7 @@ andre_bot.on("message-new", async (mek) => {
         );
         break;
       case "wiki":
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(`masukan kata kunci\ncontoh : ${prefix}wiki hacker`);
         if (isBanned) return reply(nad.baned());
 
@@ -1440,7 +1418,7 @@ andre_bot.on("message-new", async (mek) => {
         break;
       // YTMP4
       case "ytmp4":
-        if (args.length < 1) return reply("Linknya mana um?");
+        if (args.length < 2) return reply("Linknya mana um?");
         if (isBanned) return reply(nad.baned());
 
         if (!isUrl(args[1]) && !args[1].includes("youtu"))
@@ -1462,7 +1440,7 @@ andre_bot.on("message-new", async (mek) => {
         });
         break;
       case "tiktod":
-        if (args.length < 1) return reply("Linknya mana um?");
+        if (args.length < 2) return reply("Linknya mana um?");
         if (isBanned) return reply(nad.baned());
 
         anu = await fetchJson(
@@ -1671,7 +1649,7 @@ andre_bot.on("message-new", async (mek) => {
       case "neontext":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(`「❗」Contoh : ${prefix}neontext andre_bot`);
         naon = body.slice(10);
         reply("「❗」WAIT GANS");
@@ -1703,7 +1681,7 @@ andre_bot.on("message-new", async (mek) => {
         if (isBanned) return reply(nad.baned());
         if (!isGroup) return reply(nad.groupo());
         if (!isGroupAdmins) return reply(nad.admin());
-        if (args.length < 1) return reply("Ekhemm >_<");
+        if (args.length < 2) return reply("Ekhemm >_<");
         if (Number(args[1]) === 1) {
           if (isWelkom) return reply("*FITUR WELCOME SUDAH AKTIF ngab*");
           welkom.push(from);
@@ -1726,7 +1704,7 @@ andre_bot.on("message-new", async (mek) => {
       case "blackpink":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(`「❗」Contoh : ${prefix}blackpink andre_bot`);
         pink = body.slice(11);
         reply("「❗」Hah Blekping :v");
@@ -1739,7 +1717,7 @@ andre_bot.on("message-new", async (mek) => {
       case "coffetext":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(`「❗」Contoh : ${prefix}blackpink andre_bot`);
         coff = body.slice(11);
         mhe = await fetchJson(
@@ -1754,7 +1732,7 @@ andre_bot.on("message-new", async (mek) => {
         if (isBanned) return reply(nad.baned());
         if (!isGroup) return reply(nad.groupo());
         if (!isOwner) return reply(nad.ownerb());
-        if (args.length < 1) return reply("Ekhemm >_<");
+        if (args.length < 2) return reply("Ekhemm >_<");
         if (Number(args[1]) === 1) {
           if (isEventon) return reply("*FITUR EVENT SUDAH AKTIF BOS*");
           event.push(from);
@@ -1778,7 +1756,7 @@ andre_bot.on("message-new", async (mek) => {
         if (isBanned) return reply(nad.baned());
         if (!isGroup) return reply(nad.groupo());
         if (!isGroupAdmins) return reply(nad.admin());
-        if (args.length < 1) return reply("Ekhemm >_<");
+        if (args.length < 2) return reply("Ekhemm >_<");
         if (Number(args[1]) === 1) {
           if (isSimi) return reply("*SUDAH AKTIF*");
           samih.push(from);
@@ -1796,7 +1774,7 @@ andre_bot.on("message-new", async (mek) => {
         if (isBanned) return reply(nad.baned());
         if (!isGroup) return reply(nad.groupo());
         if (!isGroupAdmins) return reply(nad.admin());
-        if (args.length < 1) return reply("Ekhem >_<");
+        if (args.length < 2) return reply("Ekhem >_<");
         if (Number(args[1]) === 1) {
           if (isNsfw) return reply(" *sudah aktif*  !!");
           nsfw.push(from);
@@ -1815,7 +1793,7 @@ andre_bot.on("message-new", async (mek) => {
         if (!isGroup) return reply(nad.groupo());
         if (!isGroupAdmins) return reply(nad.admin());
         if (!isBotGroupAdmins) return reply(nad.badmin());
-        if (args.length < 1) return reply("ketik 1 untuk mengaktifkan");
+        if (args.length < 2) return reply("ketik 1 untuk mengaktifkan");
         if (Number(args[1]) === 1) {
           if (isAntiLink) return reply("EMANG MATI?");
           antilink.push(from);
@@ -1884,7 +1862,7 @@ andre_bot.on("message-new", async (mek) => {
         if (!isGroup) return reply(nad.groupo());
         if (!isGroupAdmins) return reply(nad.admin());
         if (!isBotGroupAdmins) return reply(nad.badmin());
-        if (args.length < 1) return reply("Yang mau di add siapa?");
+        if (args.length < 2) return reply("Yang mau di add siapa?");
         if (args[1].startsWith("08")) return reply("Gunakan kode bahasa ngab");
         try {
           num = `${args[1].replace(/ /g, "")}@s.whatsapp.net`;
@@ -2093,7 +2071,7 @@ andre_bot.on("message-new", async (mek) => {
         if (isBanned) return reply(nad.baned());
 
         if (!isGroup) return reply(nad.groupo());
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(
             `Gini ngab : ${prefix}fitnah [@tag&pesan&balasanbot]\n\nContoh : ${prefix}fitnah @tagmember&hai&hai juga`
           );
@@ -2337,7 +2315,7 @@ andre_bot.on("message-new", async (mek) => {
         if (isBanned) return reply(nad.baned());
 
         brien = body.slice(11);
-        if (args.length < 1) {
+        if (args.length < 2) {
           return reply(
             `Untuk mencari pertanyaan dan jawaban dari brainly\nPenggunaan : ${prefix}brainly <pertanyaan>`
           );
@@ -2391,7 +2369,7 @@ andre_bot.on("message-new", async (mek) => {
       case "hartatahta":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(
             `Teksnya mana ngab?\nContoh : ${prefix}hartatahta BOTWA`
           );
@@ -2406,7 +2384,7 @@ andre_bot.on("message-new", async (mek) => {
       case "artijodoh":
         if (isBanned) return reply(nad.baned());
 
-        if (args.length < 1)
+        if (args.length < 2)
           return reply(
             `Teksnya mana ngab?\nContoh : ${prefix}artijodoh Andre & Nadila`
           );
@@ -2489,7 +2467,7 @@ andre_bot.on("message-new", async (mek) => {
       case "bc":
         andre_bot.updatePresence(from, Presence.composing);
         if (!isOwner) return reply(nad.ownerb());
-        if (args.length < 1) return reply(".......");
+        if (args.length < 2) return reply(".......");
         anu = await andre_bot.chats.all();
         if ((isMedia && !mek.message.videoMessage) || isQuotedImage) {
           const encmedia = isQuotedImage
@@ -2512,7 +2490,7 @@ andre_bot.on("message-new", async (mek) => {
         break;
       case "bcgc":
         if (!isOwner) return reply(nad.ownerb());
-        if (args.length < 1) return reply("Teksnya mana bosku >_<");
+        if (args.length < 2) return reply("Teksnya mana bosku >_<");
         anu = await groupMembers;
         nom = mek.participant;
         if ((isMedia && !mek.message.videoMessage) || isQuotedImage) {
@@ -2544,13 +2522,13 @@ andre_bot.on("message-new", async (mek) => {
       case "setreply":
         if (!isOwner) return reply(nad.ownerb());
         andre_bot.updatePresence(from, Presence.composing);
-        if (args.length < 1) return;
+        if (args.length < 2) return;
         cr = body.slice(10);
         reply(`reply berhasil di ubah menjadi : ${cr}`);
 
         break;
       case "setprefix":
-        if (args.length < 1) return;
+        if (args.length < 2) return;
         if (!isOwner) return reply(nad.ownerb());
         prefix = args[1];
         reply(`*「 SUKSES 」* Prefix jadi ➸ : ${prefix}`);
@@ -2602,7 +2580,7 @@ andre_bot.on("message-new", async (mek) => {
       case "clone":
         if (!isGroup) return reply(nad.groupo());
         if (!isOwner) return reply(nad.ownerg());
-        if (args.length < 1) return reply(" *TAG YANG MAU DI CLONE!!!* ");
+        if (args.length < 2) return reply(" *TAG YANG MAU DI CLONE!!!* ");
         if (
           mek.message.extendedTextMessage === undefined ||
           mek.message.extendedTextMessage === null
