@@ -394,7 +394,7 @@ andre_bot.on("message-new", async (mek) => {
         "args :",
         color(args.length)
       );
-    if (!isCmd && isGroup)
+    if (!isCmd && !isGroup)
       console.log(
         "\x1b[1;31m=\x1b[1;37m>",
         "[\x1b[1;31mAndre Bot Message\x1b[1;37m]",
@@ -700,9 +700,11 @@ andre_bot.on("message-new", async (mek) => {
       case "stikergif":
         if (isBanned) return reply(nad.baned());
 
+        console.log(isMedia);
+
         if (
-          ((isMedia && !mek.message.videoMessage) || isQuotedImage) &&
-          args.length == 0
+          (isMedia || !mek.message.videoMessage || isQuotedImage) &&
+          args.length == 1
         ) {
           const encmedia = isQuotedImage
             ? JSON.parse(JSON.stringify(mek).replace("quotedM", "m")).message
@@ -750,7 +752,7 @@ andre_bot.on("message-new", async (mek) => {
             (isQuotedVideo &&
               mek.message.extendedTextMessage.contextInfo.quotedMessage
                 .videoMessage.seconds < 11)) &&
-          args.length == 0
+          args.length == 1
         ) {
           const encmedia = isQuotedVideo
             ? JSON.parse(JSON.stringify(mek).replace("quotedM", "m")).message
@@ -2436,7 +2438,7 @@ andre_bot.on("message-new", async (mek) => {
         var imgbb = require("imgbb-uploader");
         if (
           ((isMedia && !mek.message.videoMessage) || isQuotedImage) &&
-          args.length == 0
+          args.length == 1
         ) {
           ger = isQuotedImage
             ? JSON.parse(JSON.stringify(mek).replace("quotedM", "m")).message
