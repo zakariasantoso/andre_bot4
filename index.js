@@ -338,6 +338,10 @@ andre_bot.on("message-new", async (mek) => {
 */
 
     // ANTI LINK GRUP
+    if (!isGroup && !isOwner && !isCmd)
+      return reply(
+        `Maaf, bot hanya bisa digunakan di dalam grup, untuk meminta akses di dalam grup hubungi wa.me/6282131882053`
+      );
     if (tas.match(/(https?:\/\/chat.whatsapp.com)/gi)) {
       if (!isGroup) return;
       if (!isAntiLink) return;
