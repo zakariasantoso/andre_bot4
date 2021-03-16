@@ -179,9 +179,7 @@ andre_bot.on("group-participants-update", async (anu) => {
         ppimg =
           "https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg";
       }
-      teks = `SELAMAT TINGGAL... @${
-        num.split("@")[0]
-      }👋* \n_Jasamu akan saya kubur dalam dalam_`;
+      teks = `Alhamdulillah beban grup ilang 1`;
       let buff = await getBuffer(ppimg);
       andre_bot.sendMessage(mdata.id, buff, MessageType.image, {
         caption: teks,
