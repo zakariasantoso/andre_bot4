@@ -703,7 +703,7 @@ andre_bot.on("message-new", async (mek) => {
         console.log(isMedia);
 
         if (
-          (isMedia || !mek.message.videoMessage || isQuotedImage) &&
+          ((isMedia && !mek.message.videoMessage) || isQuotedImage) &&
           args.length == 1
         ) {
           const encmedia = isQuotedImage
@@ -726,7 +726,7 @@ andre_bot.on("message-new", async (mek) => {
               console.log("Finish");
               exec(
                 `webpmux -set exif ${addMetadata(
-                  "andre_botBOT",
+                  "Andre BOT",
                   authorname
                 )} ${ran} -o ${ran}`,
                 async (error) => {
