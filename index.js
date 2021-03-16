@@ -148,37 +148,52 @@ andre_bot.on("open", () => {
 });
 andre_bot.connect({ timeoutMs: 30 * 1000 });
 
-andre_bot.on('group-participants-update', async (anu) => {
-		if (!welkom.includes(anu.jid)) return
-		try {
-			const mdata = await andre_bot.groupMetadata(anu.jid)
-			console.log(anu)
-			if (anu.action == 'add') {
-				num = anu.participants[0]
-				try {
-					ppimg = await andre_bot.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
-				} catch {
-					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-				}
-				teks = `[ *WELCOME IN GC ${mdata.subject}* ] \n___________________________\n@${num.split('@')[0]} Intro/Dikick!!! \n➸ Nama : \n➸ Umur : \n➸ Askot : \n➸ Gender : \n➸ Udah Punya Doi/Blm: \n➸ Pap Muka dumlu!!! \n➸ Instagram? \n𝐒𝐚𝐯𝐞 𝐍𝐨𝐦𝐨𝐫 𝐀𝐃𝐌𝐈𝐍! \n *___________________________*\nJangan jadi kutu lomcat sayang!!`
-				let buff = await getBuffer(ppimg)
-				andre_bot.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
-			} else if (anu.action == 'remove') {
-				num = anu.participants[0]
-				try {
-					ppimg = await baby.getProfilePicture(`${num.split('@')[0]}@c.us`)
-				} catch {
-					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-				}
-				teks = `SELAMAT TINGGAL... @${num.split('@')[0]}👋* \n_Jasamu akan saya kubur dalam dalam_`
-				let buff = await getBuffer(ppimg)
-				andre_bot.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
-			}
-		} catch (e) {
-			console.log('Error : %s', color(e, 'red'))
-		}
-	})
-	
+andre_bot.on("group-participants-update", async (anu) => {
+  if (!welkom.includes(anu.jid)) return;
+  try {
+    const mdata = await andre_bot.groupMetadata(anu.jid);
+    console.log(anu);
+    if (anu.action == "add") {
+      num = anu.participants[0];
+      try {
+        ppimg = await andre_bot.getProfilePicture(
+          `${anu.participants[0].split("@")[0]}@c.us`
+        );
+      } catch {
+        ppimg =
+          "https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg";
+      }
+      teks = `[ *WELCOME IN GC ${
+        mdata.subject
+      }* ] \n___________________________\n@${
+        num.split("@")[0]
+      } Intro/Dikick!!! \n➸ Nama : \n➸ Umur : \n➸ Askot : \n➸ Gender : \n➸ Udah Punya Doi/Blm: \n➸ Pap Muka dumlu!!! \n➸ Instagram? \n𝐒𝐚𝐯𝐞 𝐍𝐨𝐦𝐨𝐫 𝐀𝐃𝐌𝐈𝐍! \n *___________________________*\nJangan jadi kutu lomcat sayang!!`;
+      let buff = await getBuffer(ppimg);
+      andre_bot.sendMessage(mdata.id, buff, MessageType.image, {
+        caption: teks,
+        contextInfo: { mentionedJid: [num] },
+      });
+    } else if (anu.action == "remove") {
+      num = anu.participants[0];
+      try {
+        ppimg = await baby.getProfilePicture(`${num.split("@")[0]}@c.us`);
+      } catch {
+        ppimg =
+          "https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg";
+      }
+      teks = `SELAMAT TINGGAL... @${
+        num.split("@")[0]
+      }👋* \n_Jasamu akan saya kubur dalam dalam_`;
+      let buff = await getBuffer(ppimg);
+      andre_bot.sendMessage(mdata.id, buff, MessageType.image, {
+        caption: teks,
+        contextInfo: { mentionedJid: [num] },
+      });
+    }
+  } catch (e) {
+    console.log("Error : %s", color(e, "red"));
+  }
+});
 
 andre_bot.on("CB:Blocklist", (json) => {
   if (blocked.length > 2) return;
@@ -691,11 +706,7 @@ andre_bot.on("message-new", async (mek) => {
         console.log(isMedia);
 
         if (
-<<<<<<< HEAD
           ((isMedia && !mek.message.videoMessage) || isQuotedImage) &&
-=======
-          (isMedia && !mek.message.videoMessage || isQuotedImage) &&
->>>>>>> 6a2b61d4a13b736bcc4914dcdc9424c1394e402d
           args.length == 1
         ) {
           const encmedia = isQuotedImage
