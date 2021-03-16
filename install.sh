@@ -12,4 +12,4 @@ wget -O ~/../usr/share/tessdata/ind.traineddata "https://github.com/tesseract-oc
 npm install
 npm audit fix
 
-echo "[*] Sudah selesai terinstall!"
+echo "[*] Script Andre Bot Berhasil Di Install!"

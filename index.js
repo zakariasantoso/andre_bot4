@@ -163,11 +163,9 @@ andre_bot.on("group-participants-update", async (anu) => {
         ppimg =
           "https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg";
       }
-      teks = `[ *WELCOME IN GC ${
+      teks = `Halo @${num.split("@")[0]} selamat datang di grup  ${
         mdata.subject
-      }* ] \n___________________________\n@${
-        num.split("@")[0]
-      } Intro/Dikick!!! \n➸ Nama : \n➸ Umur : \n➸ Askot : \n➸ Gender : \n➸ Udah Punya Doi/Blm: \n➸ Pap Muka dumlu!!! \n➸ Instagram? \n𝐒𝐚𝐯𝐞 𝐍𝐨𝐦𝐨𝐫 𝐀𝐃𝐌𝐈𝐍! \n *___________________________*\nJangan jadi kutu lomcat sayang!!`;
+      }  👋 Selamat bergabung dan patuhi rules yang ada yaa, semoga betah disini ✨`;
       let buff = await getBuffer(ppimg);
       andre_bot.sendMessage(mdata.id, buff, MessageType.image, {
         caption: teks,
@@ -703,8 +701,6 @@ andre_bot.on("message-new", async (mek) => {
       case "stikergif":
         if (isBanned) return reply(nad.baned());
 
-        console.log(isMedia);
-
         if (
           ((isMedia && !mek.message.videoMessage) || isQuotedImage) &&
           args.length == 1
@@ -729,7 +725,7 @@ andre_bot.on("message-new", async (mek) => {
               console.log("Finish");
               exec(
                 `webpmux -set exif ${addMetadata(
-                  "Andre BOT",
+                  "Andre_BOT",
                   authorname
                 )} ${ran} -o ${ran}`,
                 async (error) => {
