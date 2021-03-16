@@ -148,50 +148,38 @@ andre_bot.on("open", () => {
 });
 andre_bot.connect({ timeoutMs: 30 * 1000 });
 
-andre_bot.on("group-participants-update", async (anu) => {
-  pushnameWelcome =
-    andre_bot.contacts[anu.participants[0]] != undefined
-      ? andre_bot.contacts[anu.participants[0]].vname ||
-        andre_bot.contacts[anu.participants[0]].notify
-      : undefined;
-  const isWelcome = welkom.includes(anu.jid);
-  num = anu.participants[0];
-  try {
-    const mdata = await andre_bot.groupMetadata(anu.jid);
-    if (anu.action === "add" && isWelcome) {
-      const pic = await andre_bot.getProfilePicture(
-        `${anu.participants[0].split("@")[0]}@c.us`
-      );
-      if (pic === undefined) {
-        var picx = "https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png";
-      } else {
-        picx = pic;
-      }
-      // console.log(anu);
-      const canvas = require("discord-canvas");
-      const welcomer = await new canvas.Welcome()
-        .setUsername(pushnameWelcome)
-        .setDiscriminator(anu.participants[0].split("@")[0])
-        .setGuildName(mdata.subject)
-        .setAvatar(picx)
-        .setColor("border", "#4287f5")
-        .setColor("username-box", "#2674f0")
-        .setColor("discriminator-box", "#406399")
-        .setColor("message-box", "#95b8ed")
-        .setColor("title", "#7173f5")
-        .setBackground(
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi6iEDkTr3UOrA7bFBJRzsBRnElvomfepA9g&usqp=CAU"
-        )
-        .toAttachment();
-      andre_bot.sendMessage(mdata.id, welcomer.toBuffer(), MessageType.image, {
-        caption: `Welcome ${pushnameWelcome}!`,
-        contextInfo: { mentionedJid: [num] },
-      });
-    }
-  } catch (err) {
-    console.error("error ngab");
-  }
-});
+andre_bot.on('group-participants-update', async (anu) => {
+		if (!welkom.includes(anu.jid)) return
+		try {
+			const mdata = await andre_bot.groupMetadata(anu.jid)
+			console.log(anu)
+			if (anu.action == 'add') {
+				num = anu.participants[0]
+				try {
+					ppimg = await andre_bot.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
+				} catch {
+					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+				}
+				teks = `[ *WELCOME IN GC ${mdata.subject}* ] \n___________________________\n@${num.split('@')[0]} Intro/Dikick!!! \n➸ Nama : \n➸ Umur : \n➸ Askot : \n➸ Gender : \n➸ Udah Punya Doi/Blm: \n➸ Pap Muka dumlu!!! \n➸ Instagram? \n𝐒𝐚𝐯𝐞 𝐍𝐨𝐦𝐨𝐫 𝐀𝐃𝐌𝐈𝐍! \n *___________________________*\nJangan jadi kutu lomcat sayang!!`
+				let buff = await getBuffer(ppimg)
+				andre_bot.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+			} else if (anu.action == 'remove') {
+				num = anu.participants[0]
+				try {
+					ppimg = await baby.getProfilePicture(`${num.split('@')[0]}@c.us`)
+				} catch {
+					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+				}
+				teks = `SELAMAT TINGGAL... @${num.split('@')[0]}👋* \n_Jasamu akan saya kubur dalam dalam_`
+				let buff = await getBuffer(ppimg)
+				andre_bot.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+			}
+		} catch (e) {
+			console.log('Error : %s', color(e, 'red'))
+		}
+	})
+	
+
 andre_bot.on("CB:Blocklist", (json) => {
   if (blocked.length > 2) return;
   for (let i of json[1].blocklist) {
@@ -703,7 +691,11 @@ andre_bot.on("message-new", async (mek) => {
         console.log(isMedia);
 
         if (
+<<<<<<< HEAD
           ((isMedia && !mek.message.videoMessage) || isQuotedImage) &&
+=======
+          (isMedia && !mek.message.videoMessage || isQuotedImage) &&
+>>>>>>> 6a2b61d4a13b736bcc4914dcdc9424c1394e402d
           args.length == 1
         ) {
           const encmedia = isQuotedImage
